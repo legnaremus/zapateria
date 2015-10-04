@@ -1,0 +1,46 @@
+extends layout
+
+block content
+	nav.navbar.navbar-default
+		div.container-fluid
+			ul.nav.navbar-nav.navbar-right
+				li
+					a.usr#usr Usuario: #{usuario}
+				li(role="presentation")#notificacion
+					<a href="#">Notificacion <span class="badge">3</span></a>
+				li
+					a(href='/').ion-close#salir 
+			div.navbar-header
+				button(type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false").navbar-toggle.collapsed
+					span.sr-only Toggle navigation
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a(href="#").navbar-brand
+					img(src='img/brand.png')
+			div.collapse.navbar-collapse#bs-example-navbar-collapse-1
+				ul.nav.navbar-nav
+					li
+						a(href='/inicio') Inicio
+					li
+						a(href='/productos') Productos
+					li
+						a(href='/agregar') Agregar
+					li
+						a(href='/registrar') Registrar
+					li
+						a(href='/clientes') Clientes
+					li
+						a(href='/caja') Caja
+					li.active
+						a(href='/configuraciones') Configuraciones
+	h1= title
+	div
+		div.row
+			div.cnf Agregar Usuario
+			div.cnf Modificar Contraseñas
+			div.cnf Promociones
+		div.row
+			div.cnf Agregar Usuario
+			div.cnf Modificar Contraseñas
+			div.cnf Promociones

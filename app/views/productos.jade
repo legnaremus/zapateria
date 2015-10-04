@@ -1,0 +1,89 @@
+extends layout
+
+block content
+	nav.navbar.navbar-default
+		div.container-fluid
+			ul.nav.navbar-nav.navbar-right
+				li
+					a.usr#usr Usuario: #{usuario}
+				li(role="presentation")#notificacion
+					<a href="#">Notificacion <span class="badge">3</span></a>
+				li
+					a(href='/').ion-close#salir 
+			div.navbar-header
+				button(type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false").navbar-toggle.collapsed
+					span.sr-only Toggle navigation
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a(href="#").navbar-brand
+					img(src='img/brand.png')
+			div.collapse.navbar-collapse#bs-example-navbar-collapse-1
+				ul.nav.navbar-nav
+					li
+						a(href='/inicio') Inicio
+					li.active
+						a(href='#') Productos
+					li
+						a(href='/agregar') Agregar
+					li
+						a(href='/registrar') Registrar
+					li
+						a(href='/clientes') Clientes
+					li
+						a(href='/caja') Caja
+					li
+						a(href='/configuraciones') Configuraciones
+	h1= title
+	div#busp
+		form(role='form').form-inline#busqueda
+			div.form-group
+				label(for='id') Id_producto:
+				input(type='text' placeholder='Id Producto').form-control#id
+				label(for='color') Color: 
+				select.form-control#color
+					option Cualquiera
+					option cafe
+					option rojo
+					option negro
+			div.form-group
+				label(for='marca') Marca: 
+				input(type='text' placeholder='Marca de producto').form-control#marca
+			div.form-group
+				label(for='modelo') Modelo: 
+				input(type='text' placeholder='Modelo de producto').form-control#modelo
+			div.form-group
+			label(for='color') Tipo de producto: 
+			select.form-control#producto
+				option(value='Cualquiera') Cualquiera
+				option(value='Zapatos') Zapatos
+				option(value='Carteras') Carteras
+				option(value='Bolsas') Bolsas
+				option(value='Otros') Otros
+			button(type='button' value='Buscar').btn.btn-success.form-control.ion-search  Buscar
+	h3 Resultados
+	div.tabla
+		table.table.table-striped.table-bordered.table-hover.table-condensed.tabla
+			thead
+				tr
+					each val in columnas
+						th=val.name
+					th Acciones
+			tbody
+				- for(var i=0;i<resultado.length;i++){
+					tr
+						- for(var j=0;j<columnas.length;j++){
+							- var ll=''+columnas[j].name
+							td=resultado[i][ll]
+						- }
+
+						td.centrar
+							button(type='button').btn.btn-success 
+								span.ion-plus  Agregar
+							button(type='button').btn.btn-warning 
+								span.ion-edit  Modificar			
+				- }
+
+	a(href='/registrar')
+		button(type='button').btn.btn-primary 
+			span.ion-android-checkmark-circle  Registrar nuevo

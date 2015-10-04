@@ -1,0 +1,103 @@
+extends layout
+block content
+	nav.navbar.navbar-default
+		div.container-fluid
+			ul.nav.navbar-nav.navbar-right
+				li
+					a.usr#usr Usuario: #{usuario}
+				li(role="presentation")#notificacion
+					<a href="#">Notificacion <span class="badge">3</span></a>
+				li
+					a(href='/').ion-close#salir 
+			div.navbar-header
+				button(type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false").navbar-toggle.collapsed
+					span.sr-only Toggle navigation
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a(href="#").navbar-brand
+					img(src='img/brand.png')
+			div.collapse.navbar-collapse#bs-example-navbar-collapse-1
+				ul.nav.navbar-nav
+					li.active
+						a(href='#') Inicio
+					li
+						a(href='/productos') Productos
+					li
+						a(href='/agregar') Agregar
+					li
+						a(href='/registrar') Registrar
+					li
+						a(href='/clientes') Clientes
+					li
+						a(href='/caja') Caja
+					li
+						a(href='/configuraciones') Configuraciones
+	h1= title
+	form.form-inline
+		div.form-group
+			label Codigo de producto: 
+			input(type='text' placeholder='Ingresa el Codigo de producto').form-control
+			input(type='submit' value='agregar').form-control
+	br
+	div#tablaindex
+		table.table.table-striped.table-bordered.table-hover.table-condensed
+			thead
+				tr
+					th #_Producto
+					th Descripcion
+					th Precio
+					th Cantidad
+					th Importe
+					th Accion
+			tbody
+					tr
+						td 537815630
+						td bota cafe 23.5
+						td $ 460.00
+						td 1
+						td $ 460.00
+						td.centrar
+							button(type='button').btn.btn-danger.ion-close-circled.io  Remover
+					tr
+						td 537815630
+						td bota negro 25.5
+						td $ 460.00
+						td 1
+						td $ 460.00
+						td.centrar
+							button(type='button').btn.btn-danger.ion-close-circled.io  Remover
+	div#infoPago
+		label.label.label-primary TOTAL: $ 920.00  
+		button(type='button').btn.btn-success.ion-checkmark-round  Cobrar
+
+	div#venta.col-sm-5.col-sm-offset-3
+		div#descuento
+			h2 Seleccione la promocion o el descuento: 
+			div.form-group.form-inline
+				label(for='promo') Promocion:
+				select.form-control#promo
+					option 10% Descuento Sandalias
+					option 20% Descuento Bolsas
+					option 30% Descuento Jeep
+			div.form-group.form-inline
+				label Porcentaje: %	
+				input(type='number' placeholder='Porcentaje %' value='10').form-control
+			button(type='button').btn.btn-danger.ion-close-round  Cancelar
+			button(type='submit').btn.btn-success.ion-checkmark-round.col-sm-offset-1  Continuar
+		div#confirmar
+			h2 Confirma la venta por $ 920.00
+			div.form-group.form-inline
+				label(for='pago') Tipo Pago:
+				select.form-control#pago
+					option Efectivo
+					option Tarjeta
+					option Credito
+			div.form-group.form-inline
+				label Pago : $
+				input(type='number' placeholder='Monto $' value='920').form-control
+			div.form-group.form-inline
+				label Cambio : $
+				input(type='text' placeholder='Cambio $' value ='0' readonly='readonly').form-control
+			button(type='button').btn.btn-danger.ion-close-round  Cancelar
+			button(type='submit').btn.btn-success.ion-checkmark-round.col-sm-offset-1  Confirmar

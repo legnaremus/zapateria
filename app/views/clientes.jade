@@ -1,0 +1,89 @@
+extends layout
+
+block content
+	nav.navbar.navbar-default
+		div.container-fluid
+			ul.nav.navbar-nav.navbar-right
+				li
+					a.usr#usr Usuario: #{usuario}
+				li(role="presentation")#notificacion
+					<a href="#">Notificacion <span class="badge">3</span></a>
+				li
+					a(href='/').ion-close#salir 
+			div.navbar-header
+				button(type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false").navbar-toggle.collapsed
+					span.sr-only Toggle navigation
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a(href="#").navbar-brand
+					img(src='img/brand.png')
+			div.collapse.navbar-collapse#bs-example-navbar-collapse-1
+				ul.nav.navbar-nav
+					li
+						a(href='/inicio') Inicio
+					li
+						a(href='/productos') Productos
+					li
+						a(href='/agregar') Agregar
+					li
+						a(href='/registrar') Registrar
+					li.active
+						a(href='/clientes') Clientes
+					li
+						a(href='/caja') Caja
+					li
+						a(href='/configuraciones') Configuraciones
+	h1= title
+	div#busp
+		form(role='form').form-inline#busqueda
+			div.form-group
+				label(for='id') Id_cliente:
+				input(type='text' placeholder='Id de Cliente').form-control#id
+			div.form-group
+				label(for='nombre')	Nombre:
+				input(type='text' placeholder='Nombre').form-control#nombre
+			div.form-group
+				label(for='apellido_pat') Apellido Paterno: 
+				input(type='text' placeholder='Apellido Paterno').form-control#apellido_pat
+			div.form-group
+				label(for='apellido_mat') Apellido Materno: 
+				input(type='text' placeholder='Apellido Materno').form-control#apellido_pat
+				button(type='button' value='Buscar').btn.btn-success.form-control.ion-search  Buscar
+	h3 Resultados
+	table.table.table-striped.table-bordered.table-hover.table-condensed
+		thead
+			tr
+				th #_Cliente
+				th Nombre
+				th Apellido Paterno
+				th Apellido Materno
+				th Saldo
+				th Accion
+		tbody		
+			tr
+				td 342678291
+				td Fdfiej
+				td fdfdfd
+				td htrrgr
+				td $ 480.00
+				td.centrar
+					button(type='button').btn.btn-info 
+						span.ion-plus  Abonar
+					button(type='button').btn.btn-info 
+						span.ion-social-buffer  Historial	
+			tr
+				td 679390200
+				td jsdef
+				td iprod
+				td hukomude
+				td $ 2030.00
+				td.centrar
+					button(type='button').btn.btn-info 
+						span.ion-plus  Abonar
+					button(type='button').btn.btn-info 
+						span.ion-social-buffer  Historial
+						
+	a(href='/productos/registrar_cliente')
+		button(type='button').btn.btn-primary 
+			span.ion-android-checkmark-circle  Registrar nuevo

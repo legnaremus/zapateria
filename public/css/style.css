@@ -1,0 +1,111 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 10px 40px;
+  /*background: #E7D9EC;*/
+}
+#log{
+	text-align: center;
+}
+a {
+  color: #00B7FF;
+}
+.navbar-brand{
+	padding: 0 5px 0 0;
+	margin-right: 20px;
+	margin-left: 10px;
+}
+.navbar-brand img{
+	height: 45px;
+}
+form input, form select, form button{
+	width: 60px;
+	margin-right: 10px;
+	margin-left: 5px;
+	margin-bottom: 20px;
+	
+}
+#tablaindex{
+	min-height: 360px;
+}
+#tablaindex tr{
+	height: 20px;
+}
+#bolsa,#otros{
+	display:none;
+}
+#usr{
+	padding-right: 40px;
+	color: #7CA6B9;
+	font-size: 1.4em;
+}
+#infoPago{
+	text-align: right;
+}
+#infoPago label{
+	font-size: 1.4em;
+	margin-right: 10px;
+}
+#venta label{
+	font-size: 1.4em;
+	margin-right: 10px;
+}
+.env{
+	float: right;
+	margin-right: 30px;
+}
+#salir{
+	font-size: 1.4em;
+	color: white;	
+	background: #B72E2E;
+	border-radius: 30% 50%;
+}
+.navbar-default .navbar-brand{
+	color: #D9B8EC;
+	font-size: 1.7em;
+}
+#venta{
+	text-align: center;
+	position: absolute;
+	top:100px;
+	min-height: 250px;
+	background: #97A8F1;
+	border-radius: 10px;
+	padding:20px;
+	color: #504F4F;
+	display: none;
+}
+#venta #descuento{
+	display: none;
+}
+#venta #confirmar{
+	/*display: none;*/
+}
+.centrar{
+	text-align: center;
+}
+.cnf{
+	display: inline-block;
+	position: relative;
+	margin-left:10%;
+	margin-top: 40px;
+	width: 20%;
+	height: 140px;
+	background: #3C7AD8;
+	color: white;
+	text-align: center;
+	padding: 15px;
+	border-radius: 5px;
+	font-size: 1.5em;
+}
+.cnf:hover{
+	background: #1A5FC7;
+}
+.tabla{
+	margin: 10px;
+}
+#tallas{
+	background: #D8D8D8;
+	margin: 10px;
+	padding: 20px;
+	padding-top: 2px;
+}
