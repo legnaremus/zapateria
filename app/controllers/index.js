@@ -30,8 +30,8 @@ router.post('/inicio', function (req, res, next) {
       if (err){
         res.redirect('/?w=ru');
       }
-
-      if(rows.length>0){
+      if(rows)
+       if(rows.length>0){ 
         if(pass===rows[0].password){
           res.render('index', {
             title: 'Ventas',

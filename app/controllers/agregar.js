@@ -17,39 +17,32 @@ router.get('/agregar', function (req, res, next) {
 	var id=req.query.id_producto;
 	var color=req.query.colores;
 	if(id){
-		if(color!='nll'){
-			console.log("ENtre al  color");
-			connection.query('select talla,cantidad,color,modelo,marca from zapato inner join producto as p using(id_producto) where p.id_producto='+id+' and color= "'+color+'"', function(err,rows,fields){
-				if(err){throw err;}
-				if(rows.length>0){
-					res.render('agregar', {
-				    	id: id,
-				    	color: rows,
-				    	marca: rows[0].marca,
-				    	modelo: rows[0].modelo,
-				    	tallas:rows,
-				      title: 'Agregar A Stock'
-			    	});
-				}
-			});
+		connection.query('select color, marca, modelo from zapato inner join'+
+			' producto using(id_producto) where id_producto='+id+' group by color',
+				function(err,rows,fields){
+			if(err){throw err;}
+			if(rows.length>0){
+				console.log("ENtre al solo Id");
+				res.render('agregar', {
+			    	id: id,
+			    	color: rows,
+			    	marca: rows[0].marca,
+			    	modelo: rows[0].modelo,
+			      title: 'Agregar A Stock',
+			      mensaje:''
 
-		}else{
-			connection.query('select color, marca, modelo from zapato inner join'+
-				' producto using(id_producto) where id_producto='+id+' group by color',
-					function(err,rows,fields){
-				if(err){throw err;}
-				if(rows.length>0){
-					console.log("ENtre al solo Id");
-					res.render('agregar', {
-				    	id: id,
-				    	color: rows,
-				    	marca: rows[0].marca,
-				    	modelo: rows[0].modelo,
-				      title: 'Agregar A Stock'
-			    	});
-				}
-			});
-		}
+		    	});
+			}else{
+				res.render('agregar', {
+			    	id: '',
+			    	color: '',
+			    	marca: '',
+			    	modelo: '',
+			      title: 'Agregar A Stock',
+			      mensaje:'Id no existente'
+		    	});
+			}
+		});
   }else{
 		console.log("ENtre al sin parametros");
 		res.render('agregar',
@@ -58,7 +51,9 @@ router.get('/agregar', function (req, res, next) {
 			color:[],
 			marca:'',
 			modelo:'',
-			title:'Agregar A Stock'
+			title:'Agregar A Stock',
+			mensaje:''
+
 		});
   }  
 });

@@ -34,6 +34,10 @@ block content
 						a(href='/caja') Caja
 					li
 						a(href='/configuraciones') Configuraciones
+	- if(mensaje!='')
+		div.alert.alert-danger.mensajes.centrar
+			a(href="#" data-dismiss="alert" aria-label="close").close &times;
+			strong #{mensaje}
 	h1= title				
 	form(role='form').form-inline#buszap
 		div.form-group

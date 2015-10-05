@@ -109,3 +109,8 @@ form input, form select, form button{
 	padding: 20px;
 	padding-top: 2px;
 }
+
+.mensajes{
+
+	z-index: 99;
+}
