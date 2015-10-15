@@ -7,6 +7,10 @@ module.exports = function (app) {
 };
 
 router.get('/caja', function (req, res, next) {
+	var usu=req.cookies['usuario'];
+	if(usu=='undefined')
+        res.redirect('/?w=is');
+    
     res.render('caja', {
       title: 'Finanzas'
     });

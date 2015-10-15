@@ -14,6 +14,9 @@ connection.connect();
 
 
 router.get('/agregar', function (req, res, next) {
+	var usu=req.cookies['usuario'];
+	if(usu=='undefined')
+        res.redirect('/?w=is');
 	var id=req.query.id_producto;
 	var color=req.query.colores;
 	if(id){

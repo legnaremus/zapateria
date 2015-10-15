@@ -17,6 +17,10 @@ connection.connect();
 
 
 router.get('/productos', function (req, res, next) {
+  var usu=req.cookies['usuario'];
+  if(usu=='undefined')
+        res.redirect('/?w=is');
+      
 	var resul;
 	var col;
 	connection.query('select p.id_producto as Id_producto, p.descripcion as Descripcion,z.talla as Talla,z.color as Color,p.precio_venta as Precio,'+

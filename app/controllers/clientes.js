@@ -7,6 +7,10 @@ module.exports = function (app) {
 };
 
 router.get('/clientes', function (req, res, next) {
+	var usu=req.cookies['usuario'];
+	if(usu=='undefined')
+        res.redirect('/?w=is');
+    
     res.render('clientes', {
       title: 'Clientes & Creditos'
     });
