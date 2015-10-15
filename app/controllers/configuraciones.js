@@ -12,6 +12,7 @@ router.get('/configuraciones', function (req, res, next) {
         res.redirect('/?w=is');
     
     res.render('configuraciones', {
+    	usuario:usu,
       title: 'Configuraciones & Administracion'
     });
 });

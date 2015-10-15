@@ -25,13 +25,13 @@ router.get('/agregar', function (req, res, next) {
 				function(err,rows,fields){
 			if(err){throw err;}
 			if(rows.length>0){
-				console.log("ENtre al solo Id");
 				res.render('agregar', {
 			    	id: id,
 			    	color: rows,
 			    	marca: rows[0].marca,
 			    	modelo: rows[0].modelo,
 			      title: 'Agregar A Stock',
+			      usuario:usu,
 			      mensaje:''
 
 		    	});
@@ -55,7 +55,8 @@ router.get('/agregar', function (req, res, next) {
 			marca:'',
 			modelo:'',
 			title:'Agregar A Stock',
-			mensaje:''
+			mensaje:'',
+			usuario:usu
 
 		});
   }  

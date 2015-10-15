@@ -12,6 +12,7 @@ router.get('/clientes', function (req, res, next) {
         res.redirect('/?w=is');
     
     res.render('clientes', {
-      title: 'Clientes & Creditos'
+      title: 'Clientes & Creditos',
+      usuario:usu
     });
 });

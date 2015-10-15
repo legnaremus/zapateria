@@ -27,13 +27,14 @@ router.get('/productos', function (req, res, next) {
 		'z.cantidad as Cantidad	from producto as p inner join zapato as z using(id_producto)', function(err,rows,fields){
 		if(err){throw err};
 		resul=rows;	col=fields;
-		tabla(rows,col,res);
+		tabla(rows,col,res,usu);
 	});
 });
 
-var tabla=function( datos, col, res){
+var tabla=function( datos, col, res,usu){
 	console.log(" Fuera " +datos[0].talla);
   res.render('productos', {
+    usuario:usu,
   	resultado:datos,
   	columnas:col,
   	title: 'Almacen de productos'

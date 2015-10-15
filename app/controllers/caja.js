@@ -12,6 +12,7 @@ router.get('/caja', function (req, res, next) {
         res.redirect('/?w=is');
     
     res.render('caja', {
+      usuario:usu,	
       title: 'Finanzas'
     });
 });

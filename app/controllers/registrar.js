@@ -12,6 +12,7 @@ router.get('/registrar', function (req, res, next) {
         res.redirect('/?w=is');
     
     res.render('registrar', {
+    	usuario:usu,
       title: 'Registrar Producto'
     });
 });
