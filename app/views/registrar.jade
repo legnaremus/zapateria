@@ -37,16 +37,14 @@ block content
 	- if(alerta){
 		div(role='alert').alert.alert-danger.centrar.alert-dismissible
 			button(type='button' data-dismiss="alert" aria-label="Close").close
-				span(aria-hidden="true")
-					&times;
-			h4= alerta	
+				span(aria-hidden="true") &times;
+			h4= alerta
 	- }
 	- if(mensaje){
 		div(role='alert').alert.alert-success.centrar.alert-dismissible
 			button(type='button' data-dismiss="alert" aria-label="Close").close
-				span(aria-hidden="true")
-					&times;
-			h4= mensaje	
+				span(aria-hidden="true") &times;
+			h4= id_zap
 	- }
 	h1= title
 	form(role='form').form-inline#buszap
@@ -62,23 +60,23 @@ block content
 		form(role='form' action='/registrar' method='post').form-inline#busqueda
 			div.form-group
 				label(for='id') Id_producto:
-				input(type='text' placeholder='Id de producto' value='').form-control#id
+				input(type='text' placeholder='Id de producto' name='id_zap' value= ).form-control#id
 			div.form-group
 				label(for='color') Color: 
-				select.form-control#color
+				select(name='color').form-control#color
 					- for(var i=0;i<color.length;i++){
 						var col= "value = '"+color[i]['nombre']+"'";
 						option(#{col})= color[i]['nombre']
 					- }
 			div.form-group
 				label(for='descripcion') Descripcion: 
-				input(type='text' placeholder='Descripcion del producto').form-control#descripcion
+				input(type='text' placeholder='Descripcion del producto' name='descripcion').form-control#descripcion
 			div.form-group
 				label(for='precio_c') Precio de compra: 
-				input(type='text' placeholder='Precio de compra').form-control#precio_c
+				input(type='text' placeholder='Precio de compra' name='precio_c').form-control#precio_c
 			div.form-group
 				label(for='precio_v') Precio de venta: 
-				input(type='text' placeholder='Precio de venta').form-control#precio_v
+				input(type='text' placeholder='Precio de venta' name='precio_v').form-control#precio_v
 			div.form-group
 				label(for='tipo') Tipo: 
 				select.form-control#tipo
@@ -93,20 +91,20 @@ block content
 					div.row.centrar
 						div.form-group.col-sm-2.col-sm-offset-1
 							label 15.0:
-							input(type='number').form-control#_15.size
+							input(type='number' name='_15').form-control#_15.size
 						div.form-group.col-sm-2
 							label 15.5:
-							input(type='number').form-control#_15_5.size
+							input(type='number' name='_15_5').form-control#_15_5.size
 						div.form-group.col-sm-2
 							label 16.0:
-							input(type='number').form-control#_16.size
+							input(type='number' name='_16').form-control#_16.size
 						div.form-group.col-sm-2
 							label 16.5:
 							input(type='number').form-control#_16_5.size
 						div.form-group.col-sm-2
 							label 17.0:
 							input(type='number').form-control#_17.size
-					div.row.centrar		
+					div.row.centrar
 						div.form-group.col-sm-2.col-sm-offset-1
 							label 17.5:
 							input(type='number').form-control#_17_5.size
@@ -122,7 +120,7 @@ block content
 						div.form-group.col-sm-2
 							label 19.5:
 							input(type='number').form-control#_19_5.size
-					div.row.centrar		
+					div.row.centrar
 						div.form-group.col-sm-2.col-sm-offset-1
 							label 20.0:
 							input(type='number').form-control#_20.size
@@ -177,7 +175,7 @@ block content
 							input(type='number').form-control#_27_5.size
 						div.form-group.col-sm-2
 							label 28.0:
-							input(type='number').form-control#_28_5.size				
+							input(type='number').form-control#_28_5.size
 				div#caballero
 					div.row.centrar
 						div.form-group.col-sm-2.col-sm-offset-1

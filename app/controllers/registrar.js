@@ -30,6 +30,8 @@ router.get('/registrar', function (req, res, next) {
 });
 
 router.post('/registrar', function (req,res,next){
+  var id=req.body._15;
+
   connection.query("select * from color", function(err, rows,fields){
     var usu=req.cookies['usuario'];
       if(usu=='undefined')
@@ -38,7 +40,12 @@ router.post('/registrar', function (req,res,next){
         usuario:usu,
         title: 'Registrar Producto Post',
         color: rows,
-        mensaje:'Bien'
+        mensaje:'Bien',
+        id_zap:id
       });
   });
 });
+
+var b=function(){
+
+}
