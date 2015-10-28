@@ -32,7 +32,7 @@ router.post('/inicio', function (req, res, next) {
   var usu=req.body.usuario;
   var pass=req.body.pass;
   var estado;
-  connection.query("select * from usuario where id_usuario="+usu+"", function(err, rows,fields){    
+  connection.query("select * from usuario where id_usuario='"+usu+"'", function(err, rows,fields){    
       if (err){
         res.redirect('/?w=ru');
       }

@@ -34,35 +34,191 @@ block content
 						a(href='/caja') Caja
 					li
 						a(href='/configuraciones') Configuraciones
-	h1= title				
+	- if(alerta){
+		div(role='alert').alert.alert-danger.centrar.alert-dismissible
+			button(type='button' data-dismiss="alert" aria-label="Close").close
+				span(aria-hidden="true")
+					&times;
+			h4= alerta	
+	- }
+	- if(mensaje){
+		div(role='alert').alert.alert-success.centrar.alert-dismissible
+			button(type='button' data-dismiss="alert" aria-label="Close").close
+				span(aria-hidden="true")
+					&times;
+			h4= mensaje	
+	- }
+	h1= title
 	form(role='form').form-inline#buszap
 		div.form-group 
-			label(for='color')	¿Que tipo de producto desea registrar?: 
+			label(for='color') ¿Que tipo de producto desea registrar?:
 			select.form-control#producto
-				option Selecciona una opcion
 				option(value='Zapatos') Zapatos
 				option(value='Carteras') Carteras
 				option(value='Bolsas') Bolsas
 				option(value='Otros') Otros
 	h2#pro Zapatos
 	div#zap
-		form(role='form').form-inline#busqueda
+		form(role='form' action='/registrar' method='post').form-inline#busqueda
 			div.form-group
 				label(for='id') Id_producto:
 				input(type='text' placeholder='Id de producto' value='').form-control#id
 			div.form-group
-				label(for='color')	Color: 
+				label(for='color') Color: 
 				select.form-control#color
-					option cafe
-					option rojo
-					option negro
+					- for(var i=0;i<color.length;i++){
+						var col= "value = '"+color[i]['nombre']+"'";
+						option(#{col})= color[i]['nombre']
+					- }
 			div.form-group
-				label(for='marca') Marca: 
-				input(type='text' placeholder='Marca de producto' value='Flexi').form-control#marca
+				label(for='descripcion') Descripcion: 
+				input(type='text' placeholder='Descripcion del producto').form-control#descripcion
 			div.form-group
-				label(for='modelo') Modelo: 
-				input(type='text' placeholder='Modelo de producto' value='BT-021').form-control#modelo
-		button(type='button').btn.btn-primary.env.ion-checkmark-round  Guardar
+				label(for='precio_c') Precio de compra: 
+				input(type='text' placeholder='Precio de compra').form-control#precio_c
+			div.form-group
+				label(for='precio_v') Precio de venta: 
+				input(type='text' placeholder='Precio de venta').form-control#precio_v
+			div.form-group
+				label(for='tipo') Tipo: 
+				select.form-control#tipo
+					option(value='infantil') infantil
+					option(value='dama') dama	
+					option(value='caballero') caballero	
+
+			div.form-inline#tallas
+				h2
+					span.label.label-info Tallas:
+				div#infantil
+					div.row.centrar
+						div.form-group.col-sm-2.col-sm-offset-1
+							label 15.0:
+							input(type='number').form-control#_15.size
+						div.form-group.col-sm-2
+							label 15.5:
+							input(type='number').form-control#_15_5.size
+						div.form-group.col-sm-2
+							label 16.0:
+							input(type='number').form-control#_16.size
+						div.form-group.col-sm-2
+							label 16.5:
+							input(type='number').form-control#_16_5.size
+						div.form-group.col-sm-2
+							label 17.0:
+							input(type='number').form-control#_17.size
+					div.row.centrar		
+						div.form-group.col-sm-2.col-sm-offset-1
+							label 17.5:
+							input(type='number').form-control#_17_5.size
+						div.form-group.col-sm-2
+							label 18.0:
+							input(type='number').form-control#_18.size
+						div.form-group.col-sm-2
+							label 18.5:
+							input(type='number').form-control#_18_5.size
+						div.form-group.col-sm-2
+							label 19.0:
+							input(type='number').form-control#_19.size
+						div.form-group.col-sm-2
+							label 19.5:
+							input(type='number').form-control#_19_5.size
+					div.row.centrar		
+						div.form-group.col-sm-2.col-sm-offset-1
+							label 20.0:
+							input(type='number').form-control#_20.size
+						div.form-group.col-sm-2
+							label 20.5:
+							input(type='number').form-control#_20_5.size
+						div.form-group.col-sm-2
+							label 21.0:
+							input(type='number').form-control#_21.size
+						div.form-group.col-sm-2
+							label 21.5:
+							input(type='number').form-control#_21_5.size
+				div#dama
+					div.row.centrar
+						div.form-group.col-sm-2.col-sm-offset-1
+							label 22.0:
+							input(type='number').form-control#_22.size
+						div.form-group.col-sm-2
+							label 22.5:
+							input(type='number').form-control#_22_5.size
+						div.form-group.col-sm-2
+							label 23.0:
+							input(type='number').form-control#_23.size
+						div.form-group.col-sm-2
+							label 23.5:
+							input(type='number').form-control#_23_5.size
+						div.form-group.col-sm-2
+							label 24.0:
+							input(type='number').form-control#_24.size
+					div.row.centrar
+						div.form-group.col-sm-2.col-sm-offset-1
+							label 24.5:
+							input(type='number').form-control#_24_5.size
+						div.form-group.col-sm-2
+							label 25.0:
+							input(type='number').form-control#_25.size
+						div.form-group.col-sm-2
+							label 25.5:
+							input(type='number').form-control#_25_5.size
+						div.form-group.col-sm-2
+							label 26.0:
+							input(type='number').form-control#_26.size
+						div.form-group.col-sm-2
+							label 26.5:
+							input(type='number').form-control#_26_5.size
+					div.row.centrar
+						div.form-group.col-sm-2.col-sm-offset-1
+							label 27.0:
+							input(type='number').form-control#_27.size
+						div.form-group.col-sm-2
+							label 27.5:
+							input(type='number').form-control#_27_5.size
+						div.form-group.col-sm-2
+							label 28.0:
+							input(type='number').form-control#_28_5.size				
+				div#caballero
+					div.row.centrar
+						div.form-group.col-sm-2.col-sm-offset-1
+							label 5.0:
+							input(type='number').form-control#_5.size
+						div.form-group.col-sm-2
+							label 5.5:
+							input(type='number').form-control#_5_5.size
+						div.form-group.col-sm-2
+							label 6.0:
+							input(type='number').form-control#_6.size
+						div.form-group.col-sm-2
+							label 6.5:
+							input(type='number').form-control#_6_5.size
+						div.form-group.col-sm-2
+							label 7.0:
+							input(type='number').form-control#_7.size
+					div.row.centrar
+						div.form-group.col-sm-2.col-sm-offset-1
+							label 7.5:
+							input(type='number').form-control#_7_5.size
+						div.form-group.col-sm-2
+							label 8.0:
+							input(type='number').form-control#_8.size
+						div.form-group.col-sm-2
+							label 8.5:
+							input(type='number').form-control#_8_5.size
+						div.form-group.col-sm-2
+							label 9.0:
+							input(type='number').form-control#_9.size
+						div.form-group.col-sm-2
+							label 9.5:
+							input(type='number').form-control#_9_5.size
+					div.row.centrar
+						div.form-group.col-sm-2.col-sm-offset-1
+							label 10.0:
+							input(type='number').form-control#_10.size
+						div.form-group.col-sm-2
+							label 10.5:
+							input(type='number').form-control#_10_5.size
+			button(type='submit').btn.btn-primary.env.ion-checkmark-round.col-sm-2  Guardar
 
 	div#bolsa
 		form(role='form').form-inline#busbol
@@ -70,7 +226,7 @@ block content
 				label(for='id') Id_producto:
 				input(type='text' placeholder='Id de producto' value='425637809').form-control#id
 			div.form-group
-				label(for='color')	Color: 
+				label(for='color') Color: 
 				select.form-control#color
 					option cafe
 					option rojo
@@ -90,7 +246,7 @@ block content
 				label(for='id') Id_producto:
 				input(type='text' placeholder='Id de producto' value='425637809').form-control#id
 			div.form-group
-				label(for='descripcion')	Descripcion: 
+				label(for='descripcion') Descripcion: 
 				input(type='text' placeholder='Descripcion' value='Cartera Guess naranja').form-control#descripcion
 			div.form-group
 				label(for='marca') Marca: 
@@ -99,4 +255,4 @@ block content
 				label(for='modelo') Modelo: 
 				input(type='text' placeholder='Modelo de producto' value='CG1003').form-control#modelo
 		button(type='button').btn.btn-primary.env.ion-checkmark-round  Guardar
-	script(src='../js/agregar.js')
+	script(src='../js/registrar_lib.js')

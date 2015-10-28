@@ -27,7 +27,15 @@ router.get('/productos', function (req, res, next) {
 		'z.cantidad as Cantidad	from producto as p inner join zapato as z using(id_producto)', function(err,rows,fields){
 		if(err){throw err};
 		resul=rows;	col=fields;
-		tabla(rows,col,res,usu);
+    if(rows)
+      if(rows.length>0)
+		    tabla(rows,col,res,usu);
+    res.render('productos', {
+      usuario:usu,
+      title: 'Almacen de productos',
+      resultado:[],
+      columnas:col
+    });
 	});
 });
 
