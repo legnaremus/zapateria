@@ -12,12 +12,6 @@ function inicio(){
 // Botones
 	zapato();
 };
-function zapato(){
-	var guardarZapato= $('#zap button');
-	guardarZapato.click(function() {
-		
-	});
-}
 function tallas(tipo){
 	var obj;
 	switch (tipo){
@@ -43,6 +37,11 @@ function tallas(tipo){
 		break		
 		}
 }
+
+
+
+
+
 function productos(){
 	var valor;
 	zap=$('#zap');	bolsa=$('#bolsa'); otro=$('#otros');

@@ -30,8 +30,9 @@ router.get('/registrar', function (req, res, next) {
 });
 
 router.post('/registrar', function (req,res,next){
-  var id=req.body._15;
-
+  var id=req.body;
+  console.log("Body: ",id);
+  insertar(req.body);
   connection.query("select * from color", function(err, rows,fields){
     var usu=req.cookies['usuario'];
       if(usu=='undefined')
@@ -40,12 +41,22 @@ router.post('/registrar', function (req,res,next){
         usuario:usu,
         title: 'Registrar Producto Post',
         color: rows,
+        alerta:undefined,
         mensaje:'Bien',
         id_zap:id
       });
   });
+
 });
 
-var b=function(){
-
+var insertar=function(datos){
+  var n=Object.keys(datos).length;
+  var insert='insert into producto values("'+datos.id_zap+'","'+datos.descripcion+
+    '",'+datos.precio_c+','+datos.precio_v+')';
+  connection.query(insert, function(err, rows,fields){
+    if (err){
+      console.log('Insersion no realizada: ',err);
+    }
+  });
+  
 }
