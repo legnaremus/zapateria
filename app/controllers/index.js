@@ -4,13 +4,8 @@ var express = require('express'),
   db = require('../models');
 
   var mysql      = require('mysql');
-  var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'samael',
-    database : 'dbzem'
-  });
-connection.connect();
+  var connection = mysql.createConnection({host     : 'localhost',user: 'root',password : 'samael',database : 'dbzem'});
+  connection.connect();
 
 module.exports = function (app) {
   app.use('/', router);
@@ -34,6 +29,7 @@ router.post('/inicio', function (req, res, next) {
   var estado;
   connection.query("select * from usuario where id_usuario='"+usu+"'", function(err, rows,fields){    
       if (err){
+        connection.end();
         res.redirect('/?w=ru');
       }
       if(rows)
@@ -42,15 +38,17 @@ router.post('/inicio', function (req, res, next) {
           // definimos la cookie
           res.cookie('usuario',rows[0].nombre);
           res.cookie('obj',{1:"uno",2:'dos'});
-          console.log("\nCookies: ", req.cookies);
+          connection.end();
           res.render('index', {
             title: 'Ventas',
             usuario: rows[0].nombre
           });
         }else{
+          connection.end();
           res.redirect('/?w=rp');
         }
       }else{
+        connection.end();
         res.redirect('/?w=ru');
       }
   });

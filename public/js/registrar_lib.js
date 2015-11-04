@@ -9,8 +9,7 @@ function inicio(){
 		tallas(val);
 	}));
 	productos();
-// Botones
-	zapato();
+
 };
 function tallas(tipo){
 	var obj;

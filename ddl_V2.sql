@@ -92,9 +92,9 @@ create table credito(
 	CONSTRAINT creVent FOREIGN KEY (id_venta) REFERENCES venta(id_venta),
 	CONSTRAINT creClien FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
 );
-create table configuracion{
+create table configuracion(
 	ganancia double
-}
+);
 create table color(
 	id_color int primary key auto_increment,
 	nombre varchar(30)

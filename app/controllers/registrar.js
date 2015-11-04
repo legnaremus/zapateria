@@ -30,7 +30,7 @@ router.get('/registrar', function (req, res, next) {
 });
 
 router.post('/registrar', function (req,res,next){
-  var id=req.body;
+  var id=req.body.id_zap;
   console.log("Body: ",id);
   insertar(req.body);
   connection.query("select * from color", function(err, rows,fields){
@@ -50,13 +50,39 @@ router.post('/registrar', function (req,res,next){
 });
 
 var insertar=function(datos){
-  var n=Object.keys(datos).length;
   var insert='insert into producto values("'+datos.id_zap+'","'+datos.descripcion+
     '",'+datos.precio_c+','+datos.precio_v+')';
   connection.query(insert, function(err, rows,fields){
     if (err){
       console.log('Insersion no realizada: ',err);
     }
+
   });
-  
-}
+
+  var go=false;
+  var tallas={};
+  for(var ll in datos){
+    if(go){
+      if(datos[ll]!="")
+        tallas[''+ll] =datos[ll];
+    }
+    if(ll=='precio_v') go=true;
+  }
+  console.log('ta: ',tallas);
+  for(var talla in tallas){
+    var insert='insert into zapato values("'+datos.id_zap+'","'+datos.color+
+      '","'+talla+'","'+tallas[talla]+'")';
+    console.log(insert);
+    connection.query(insert, function(err, rows,fields){
+      if (err){
+        console.log('Insersion no realizada: ',err);
+      }
+    });
+  }
+};
+
+var mapear=function(cad){
+  var salida='';
+  for(var i=1;i<cad.length;i++) salida+=cad[i];  
+  return salida;
+};

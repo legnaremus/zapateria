@@ -10,7 +10,6 @@ module.exports = function (app) {
 router.get('/', function (req, res, next) {
 	var e= req.query.w, m;
   res.cookie('usuario','undefined');
-	console.log(e);
 	if(e=="ru")
 		m="Usuario Incorrecto";
 	if(e=="rp")
