@@ -53,23 +53,20 @@ block content
 		form(role='form').form-inline#busqueda
 			div.form-group
 				label(for='id') Id_producto:
-				input(type='text' placeholder='Id de producto' name='id_producto' value="#{id}").form-control#id
+				input(autofocus type='text' placeholder='Id de producto' name='id_producto' value="#{id}").form-control#id
 			div.form-group
 				label(for='color') Color: 
 				select(name='colores').form-control#color
-					option(value='nll') Selecciona un color
 					- if(color){
 						each val in color
 							option=val['color']
 					- }
 			div.form-group
-				label(for='marca') Marca: 
-				input(type='text' placeholder='Marca de producto' value='#{marca}' readonly='readonly').form-control#marca
+				label(for='descripcion') Descripcion: 
+				input(type='text' placeholder='Descripcion de producto' value='#{descripcion}' readonly='readonly').form-control#descripcion
 			div.form-group
-				label(for='modelo') Modelo: 
-				input(type='text' placeholder='Modelo de producto' value='#{modelo}' readonly='readonly').form-control#modelo
-				button(type='sumbmit' method='POST' action='/agregar').btn.btn-primary.env.ion-search  
-
+				button(type='submit').btn.btn-info.form-control
+					| Buscar  
 		form(role='form').form-inline#tallas
 			h2
 				span.label.label-info Tallas:

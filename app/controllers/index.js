@@ -15,13 +15,33 @@ router.get('/inicio',function (req,res,next){
   var usu=req.cookies['usuario'];
   if(usu=='undefined')
         res.redirect('/?w=is'); 
-
-  res.render('index', {
+  var sku=req.query.id;
+  if(sku){
+    id=sku.slice(0, 9);
+    color=sku.slice(9,11);
+    talla=sku.slice(11,16);
+    connection.query("select * from producto inner join zapato z inner join color c on c.nombre=z.color where z.id_producto="+id+
+      " and id_color="+color+" and talla='"+talla+"' group by z.id_producto", function(err, rows,fields){    
+      if(err){throw err;}
+      if(rows){
+        if(rows.length>0){
+          res.render('index', {
             title: 'Ventas',
             usuario: usu
-          });
 
-});
+          });
+        }
+      }else{
+
+      }
+    });
+  }
+  res.render('index', {
+    title: 'Ventas',
+    usuario: usu
+  });
+
+  });
 
 router.post('/inicio', function (req, res, next) {
   var usu=req.body.usuario;
@@ -37,7 +57,6 @@ router.post('/inicio', function (req, res, next) {
         if(pass===rows[0].password){
           // definimos la cookie
           res.cookie('usuario',rows[0].nombre);
-          res.cookie('obj',{1:"uno",2:'dos'});
           connection.end();
           res.render('index', {
             title: 'Ventas',

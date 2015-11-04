@@ -24,15 +24,17 @@ router.get('/registrar', function (req, res, next) {
     res.render('registrar', {
     	usuario:usu,
       title: 'Registrar Producto',
-      color: rows
+      color: rows,
+      id_zap:''
     });
   });
 });
 
 router.post('/registrar', function (req,res,next){
   var id=req.body.id_zap;
-  console.log("Body: ",id);
-  insertar(req.body);
+  if(insertar(req.body))
+    var men='ok'
+  else var men='dont'
   connection.query("select * from color", function(err, rows,fields){
     var usu=req.cookies['usuario'];
       if(usu=='undefined')
@@ -42,7 +44,7 @@ router.post('/registrar', function (req,res,next){
         title: 'Registrar Producto Post',
         color: rows,
         alerta:undefined,
-        mensaje:'Bien',
+        mensaje:men,
         id_zap:id
       });
   });
@@ -55,6 +57,7 @@ var insertar=function(datos){
   connection.query(insert, function(err, rows,fields){
     if (err){
       console.log('Insersion no realizada: ',err);
+      return false;
     }
 
   });
@@ -79,6 +82,7 @@ var insertar=function(datos){
       }
     });
   }
+  return true;
 };
 
 var mapear=function(cad){

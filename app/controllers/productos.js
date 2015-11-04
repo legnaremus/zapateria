@@ -11,7 +11,6 @@ module.exports = function (app) {
   connection.connect();
 
 var tabla=function( datos, col, res,usu){
-  console.log(" Fuera " +datos[0].talla);
   res.render('productos', {
     usuario:usu,
     resultado:datos,

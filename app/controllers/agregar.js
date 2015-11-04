@@ -20,7 +20,23 @@ router.get('/agregar', function (req, res, next) {
 	var id=req.query.id_producto;
 	var color=req.query.colores;
 	if(id){
-		connection.query('select color, marca, modelo from zapato inner join'+
+		// if(color){
+		// 	connection.query('select descripcion, talla from zapato inner join'+
+		// 	' producto using(id_producto) where id_producto='+id+' and color= "'+color+'"', function(err,rows,fields){
+		// 		if(err){throw err;}
+		// 		if(rows.length>0){
+		// 			res.render('agregar', {
+		// 		    	id: id,
+		// 		    	color: color,
+		// 		    	descripcion: rows[0].descripcion,
+		// 		      title: 'Agregar A Stock',
+		// 		      usuario:usu,
+		// 		      mensaje:''
+		// 	    	});
+		// 		}
+		// 	});
+		// }else
+		connection.query('select color, descripcion from zapato inner join'+
 			' producto using(id_producto) where id_producto='+id+' group by color',
 				function(err,rows,fields){
 			if(err){throw err;}
@@ -28,8 +44,7 @@ router.get('/agregar', function (req, res, next) {
 				res.render('agregar', {
 			    	id: id,
 			    	color: rows,
-			    	marca: rows[0].marca,
-			    	modelo: rows[0].modelo,
+			    	descripcion: rows[0].descripcion,
 			      title: 'Agregar A Stock',
 			      usuario:usu,
 			      mensaje:''
@@ -38,26 +53,21 @@ router.get('/agregar', function (req, res, next) {
 			}else{
 				res.render('agregar', {
 			    	id: '',
-			    	color: '',
-			    	marca: '',
-			    	modelo: '',
+			    	color: [],
+			    	descripcion: '',
 			      title: 'Agregar A Stock',
 			      mensaje:'Id no existente'
 		    	});
 			}
 		});
-  }else{
-		console.log("ENtre al sin parametros");
-		res.render('agregar',
-		{
+  	}else{
+		res.render('agregar',{
 			id:'',
 			color:[],
-			marca:'',
-			modelo:'',
+			descripcion:'',
 			title:'Agregar A Stock',
 			mensaje:'',
 			usuario:usu
-
 		});
   }  
 });

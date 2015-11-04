@@ -34,17 +34,17 @@ block content
 						a(href='/caja') Caja
 					li
 						a(href='/configuraciones') Configuraciones
-	- if(alerta){
+	- if(mensaje=='dont'){
 		div(role='alert').alert.alert-danger.centrar.alert-dismissible
 			button(type='button' data-dismiss="alert" aria-label="Close").close
 				span(aria-hidden="true") &times;
-			h4= alerta
+			h4= mensaje
 	- }
-	- if(mensaje){
+	- if(mensaje=='ok'){
 		div(role='alert').alert.alert-success.centrar.alert-dismissible
 			button(type='button' data-dismiss="alert" aria-label="Close").close
 				span(aria-hidden="true") &times;
-			h4= id_zap
+			h4 Se agrego correctamente el producto: #{id_zap}
 	- }
 	h1= title
 	form(role='form').form-inline#buszap
@@ -60,7 +60,7 @@ block content
 		form(autocomplete='off' role='form' action='/registrar' method='post').form-inline#busqueda
 			div.form-group
 				label(for='id') Id_producto:
-				input(required type='text' placeholder='Id de producto' name='id_zap' value='' ).form-control#id
+				input(required type='text' placeholder='Id de producto' name='id_zap' value='#{id_zap}' autofocus).form-control#id
 			div.form-group
 				label(for='color') Color: 
 				select(name='color').form-control#color
